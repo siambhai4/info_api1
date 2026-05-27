@@ -171,11 +171,10 @@ def refresh_tokens_endpoint():
         return jsonify({'error': f'Refresh failed: {e}'}),500
 
 # === Startup ===
+# === Startup ===
 
-async def startup():
-    await initialize_tokens()
-    asyncio.create_task(refresh_tokens_periodically())
+asyncio.run(initialize_tokens())
 
 if __name__ == '__main__':
-    asyncio.run(startup())
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run()
+
